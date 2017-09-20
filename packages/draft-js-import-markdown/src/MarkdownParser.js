@@ -32,6 +32,7 @@ noop.exec = noop;
 var defaults = {
   gfm: true,
   headings: true,
+  underlines: true,
   breaks: false,
   pedantic: false,
   smartLists: false,
@@ -657,7 +658,11 @@ Renderer.prototype.del = function(childNode) {
 };
 
 Renderer.prototype.ins = function(childNode) {
-  return new ElementNode('ins', [], [childNode]);
+  if (this.options.underlines) {
+    return new _syntheticDom.ElementNode('ins', [], [childNode]);
+  } else {
+    return childNode;
+  }
 };
 
 Renderer.prototype.link = function(href, title, childNode) {

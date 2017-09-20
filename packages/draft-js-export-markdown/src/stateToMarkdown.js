@@ -197,7 +197,8 @@ class MarkupGenerator {
             }
             if (style.has(UNDERLINE)) {
               // TODO: encode `+`?
-              content = `++${content.trim()}++`;
+              // We are disabling underlines
+              content = `${content}`;
             }
             if (style.has(ITALIC)) {
               content = `_${content.trim()}_`;
