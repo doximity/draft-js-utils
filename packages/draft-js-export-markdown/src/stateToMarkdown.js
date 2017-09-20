@@ -193,7 +193,7 @@ class MarkupGenerator {
             }
             let content = encodeContent(text);
             if (style.has(BOLD)) {
-              content = `**${content.trim()}**`;
+              content = content.replace(/(^[\s\uFEFF\xA0]+)?(.+\S)([\s\uFEFF\xA0]+)?$/g, '$1**$2**$3');
             }
             if (style.has(UNDERLINE)) {
               // TODO: encode `+`?
@@ -201,11 +201,11 @@ class MarkupGenerator {
               content = `${content}`;
             }
             if (style.has(ITALIC)) {
-              content = `_${content.trim()}_`;
+              content = content.replace(/(^[\s\uFEFF\xA0]+)?(.+\S)([\s\uFEFF\xA0]+)?$/g, '$1_$2_$3');
             }
             if (style.has(STRIKETHROUGH)) {
               // TODO: encode `~`?
-              content = `~~${content.trim()}~~`;
+              content = content.replace(/(^[\s\uFEFF\xA0]+)?(.+\S)([\s\uFEFF\xA0]+)?$/g, '$1~~$2~~$3');
             }
             if (style.has(CODE)) {
               content =
