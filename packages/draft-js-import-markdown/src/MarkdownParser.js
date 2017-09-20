@@ -209,7 +209,7 @@ Lexer.prototype.token = function(src, top, bq) {
         });
       } else {
         this.tokens.push({
-          type: 'text',
+          type: 'paragraph',
           text: cap[0],
         });
       }
